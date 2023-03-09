@@ -11,7 +11,7 @@ User.destroy_all
 
 User.create(first_name: "mahboob", last_name: "omary", phone: "098876544", address: "kabul", admin: true, email: "mahboob@gmail.com", password: "123456")
 
-10.times do
+100.times do
   Product.create(
     title: Faker::Name.name,
     description: Faker::Quote.jack_handey,
