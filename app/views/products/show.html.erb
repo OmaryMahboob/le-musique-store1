@@ -1,0 +1,33 @@
+<h1> You are now viewing <%= @product.title%> </h1>
+
+  <p>
+    <strong>Title:</strong>
+    <%= @product.title %>
+  </p>
+
+   <p>
+    <strong>Description:</strong>
+    <%= @product.description %>
+  </p>
+
+   <p>
+    <strong>Price:</strong>
+    <%= @product.price %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @product.user_id %>
+  </p>
+
+   <p>
+    <strong>Address:</strong>
+    <%= @product.address %>
+  </p>
+
+<div>
+  <%= link_to "Edit this product", edit_product_path(@product) %> |
+  <%= link_to "Back to products", products_path %>
+
+  <%= button_to "Destroy this product", @product, method: :delete %>
+</div>
