@@ -1,0 +1,28 @@
+<h1>Products list</h1>
+
+<div class="float-container">
+   <div class="float-child">
+    <h3> <%=link_to "Add new product", new_product_path %> </h3>
+  </div>
+  <div class="float-child">
+    <% @products.each do |product|%>
+    <p>
+    <strong>Title:</strong>
+    <%= link_to product.title, product_path(product) %>
+
+    </p>
+
+    <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+    </p>
+
+    <p>
+    <strong>Price:</strong>
+    <%= product.price %>
+    </p>
+    <% end %>
+  </div>
+
+
+</div>
