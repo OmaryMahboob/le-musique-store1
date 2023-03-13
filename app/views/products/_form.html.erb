@@ -33,12 +33,11 @@
                 <%= form.number_field :price, class: "form-control" %>
               </div>
               <div class="col-md-12">
-                <%= form.label :email, "Email", style: "display: block" %>
-                <%= form.text_field :email, value: current_user.email, readonly: true, class: "form-control disabled" %>
-              </div>
-              <div class="col-md-12">
                 <%= form.label :address, "Address", style: "display: block" %>
                 <%= form.text_field :address, value: current_user.address, readonly: true, class: "form-control disabled" %>
+              </div>
+              <div>
+                <%= form.file_field :photo, class: "form-control" %>
               </div>
               <div class="col-md-12 text-center">
                 <%= form.submit "Create Product", class: "btn btn-primary mb-4 col-3" %>
