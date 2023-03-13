@@ -1,33 +1,12 @@
-<h1> You are now viewing <%= @product.title%> </h1>
+<h1>You are now viewing <em>"<%= @product.title%>"</em></h1>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @product.title %>
-  </p>
-
-   <p>
-    <strong>Description:</strong>
-    <%= @product.description %>
-  </p>
-
-   <p>
-    <strong>Price:</strong>
-    <%= @product.price %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= @product.user_id %>
-  </p>
-
-   <p>
-    <strong>Address:</strong>
-    <%= @product.address %>
-  </p>
+<%= render "product", product: @product %>
 
 <div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
   <%= link_to "Back to products", products_path %>
-
-  <%= button_to "Destroy this product", @product, method: :delete %>
+  
+  <% if @product.user == current_user %>
+    <%= link_to "Edit this product", edit_product_path(@product) %> |
+    <%= button_to "Destroy this product", @product, method: :delete %>
+  <% end %>
 </div>

@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @products = Product.all
   end
@@ -9,14 +11,14 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.user_id = current_user
   end
 
   def edit
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.user = current_user
+    @product = current_user.products.new(product_params)
 
     respond_to do |format|
       if @product.save
@@ -51,13 +53,14 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:title, :description, :price, :user_id, :address)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:title, :description, :price, :user_id, :address)
+  end
 end
