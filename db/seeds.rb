@@ -39,6 +39,13 @@ User.create(
   password: "123456"
 )
 
+10.times do
+  Review.create(
+    content: Faker::Quote.jack_handey,
+    rating: rand(1..10)
+  )
+end
+
 100.times do
   actual_user = User.all.sample
   Product.create(
@@ -49,4 +56,5 @@ User.create(
     address: actual_user.address
   )
   p Product.last
+
 end
