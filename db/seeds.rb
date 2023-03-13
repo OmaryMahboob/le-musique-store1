@@ -9,15 +9,44 @@ require "faker"
 Product.destroy_all
 User.destroy_all
 
-User.create(first_name: "mahboob", last_name: "omary", phone: "098876544", address: "kabul", admin: true, email: "mahboob@gmail.com", password: "123456")
+User.create(
+  first_name: "mahboob",
+  last_name: "omary",
+  phone: "098876544",
+  address: "Magazinstraße 15-16, 10179 Berlin",
+  admin: true,
+  email: "mahboob@gmail.com",
+  password: "123456"
+)
 
-10.times do
+User.create(
+  first_name: "Jane",
+  last_name: "Eme",
+  phone: "098876544",
+  address: "Straßmannstraße 1, 10249 Berlin",
+  admin: true,
+  email: "martins@test.com",
+  password: "123456"
+)
+
+User.create(
+  first_name: "Roger",
+  last_name: "Silva",
+  phone: "017676490923",
+  address: "Goslarer Ufer 3, 10589 Berlin",
+  admin: true,
+  email: "roger.silva@live.cl",
+  password: "123456"
+)
+
+100.times do
+  actual_user = User.all.sample
   Product.create(
-    title: Faker::Name.name,
+    title: Faker::Music.instrument,
     description: Faker::Quote.jack_handey,
     price: rand(1..50),
-    user: User.all.sample,
-    address: Faker::Address.full_address
+    user: actual_user,
+    address: actual_user.address
   )
   p Product.last
 end
