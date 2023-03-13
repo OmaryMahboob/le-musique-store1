@@ -1,24 +1,16 @@
-  <p>
-    <strong>Title:</strong>
-    <%= product.title %>
-  </p>
+<% if user_signed_in? == false %>
+  <div class="alert alert-warning" role="alert">
+    You have to login for see all the information of the customer!
+  </div>
+<% end %>
 
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
+<p><strong>Title:</strong> <%= product.title %></p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
+<p><strong>Description:</strong> <%= product.description %></p>
 
-  <p>
-    <strong>User:</strong>
-    <%= product.user_id %>
-  </p>
+<p><strong>Price:</strong> <%= product.price %> €</p>
 
-  <p>
-    <strong>Address:</strong>
-    <%= product.address %>
-  </p>
+<% if user_signed_in? %>
+  <p><strong>Email:</strong><%= product.user.email %></p>
+  <p><strong>Address:</strong><%= product.address %></p>
+<% end %>
