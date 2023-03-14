@@ -39,12 +39,8 @@ User.create(
   password: "123456"
 )
 
-10.times do
-  Review.create(
-    content: Faker::Quote.jack_handey,
-    rating: rand(1..10)
-  )
-end
+
+photo_url = "https://images.unsplash.com/photo-1479118013749-9f79d55a28d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
 
 100.times do
   actual_user = User.all.sample
@@ -52,6 +48,7 @@ end
     title: Faker::Music.instrument,
     description: Faker::Quote.jack_handey,
     price: rand(1..50),
+    photo: photo_url,
     user: actual_user,
     address: actual_user.address
   )
