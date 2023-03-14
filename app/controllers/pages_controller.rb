@@ -3,4 +3,9 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def dashboard
+    @orders = Order.where(user: current_user)
+    @instruments = Product.where(user: current_user)
+  end
 end
