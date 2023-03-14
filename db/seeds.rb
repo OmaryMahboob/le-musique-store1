@@ -58,3 +58,15 @@ end
   p Product.last
 
 end
+
+instruments = ["Piano", "Ukelele", "Guitar", "Drum"]
+photos = ["https://images.unsplash.com/photo-1479118013749-9f79d55a28d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"]
+
+4.times do |i|
+=======
+10.times do
+  Review.create(
+    content: Faker::Quote.jack_handey,
+    rating: rand(1..10)
+  )
+end
