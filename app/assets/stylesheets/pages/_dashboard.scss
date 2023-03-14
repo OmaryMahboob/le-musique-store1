@@ -1,0 +1,127 @@
+.booking-column {
+  width: 40%;
+  margin-right: 30px;
+}
+
+.product-column {
+  width: 60%;
+}
+
+@media (max-width: 768px) {
+  .booking-column {
+    width: 100%;
+  }
+  .product-column {
+    width: 100%;
+  }
+}
+
+// CSS My bookings (left side)
+a.link {
+  text-decoration: none;
+  color: black;
+}
+
+a.link:hover{
+  color: inherit;
+}
+
+.card-booking {
+  overflow: hidden;
+  background: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  margin-bottom: 20px;
+}
+
+.card-booking > img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-booking h2 {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card-booking p {
+  font-size: 16px;
+  opacity: 1;
+  margin: 0 0 10px 0;
+}
+
+.card-booking .card-booking-infos {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-booking-infos .card-booking-user {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-infos {
+  padding: 0 20px 0 20px;
+}
+
+.card-booking-pricing {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 20px;
+}
+
+// CSS My products (right side)
+
+.card-product {
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+  background: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  display: flex;
+  align-items: center;
+}
+
+.card-product > img {
+  height: 100%;
+  width: 150px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.card-product p {
+  font-size: 16px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-top: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  max-height: calc(1.4em * 2);
+}
+
+.card-product-infos {
+  padding: 18px;
+}
+
+.card-product-infos > a {
+  text-decoration: none;
+  color: black;
+  opacity: .7;
+}
+
+a:hover{
+  opacity: 1;
+}
