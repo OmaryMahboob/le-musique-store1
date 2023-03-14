@@ -1,0 +1,12 @@
+<h2>Welcome to your dashboard <%= "#{current_user.first_name} #{current_user.last_name}" %> </h2>
+<ul>
+  <% @orders.each do |order| %>
+    <li>
+      <%= order.product.title %>
+      <%= order.payment_method %>
+      <%= order.start_date %>
+      <%= order.end_date %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Back to products", products_path %>
