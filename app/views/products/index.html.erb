@@ -9,13 +9,8 @@
     <p>
     <strong>Title:</strong>
     <%= link_to product.title, product_path(product) %>
-      <%= cl_image_tag(product.photo.key,
-      width: 400, height: 300, crop: :fill) if !product.photo.key.nil? %>
-
-    <!-- for face detection -->
-    <%#= cl_image_tag("IMAGE_WITH_FACE_ID",
-      width: 150, height: 150, crop: :thumb, gravity: :face) %>
     </p>
+    <img src="<%=product.photo%>" alt="<%=product.title%> photo" >
 
     <p>
     <strong>Description:</strong>
