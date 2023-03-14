@@ -39,23 +39,18 @@ User.create(
   password: "123456"
 )
 
-instruments = ["Piano", "Ukelele", "Guitar", "Drum"]
-photos = ["https://images.unsplash.com/photo-1479118013749-9f79d55a28d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-          "https://res.cloudinary.com/dslxaeaab/image/upload/v1678707512/Hcf278859cd3144c5b832902b581208c9k_ccilcl.png",
-          "https://res.cloudinary.com/dslxaeaab/image/upload/v1678707512/Hcf278859cd3144c5b832902b581208c9k_ccilcl.png",
-          "https://images.unsplash.com/photo-1602939444907-6e688c594a66"]
+photo_url = "https://images.unsplash.com/photo-1479118013749-9f79d55a28d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
 
-4.times do |i|
+100.times do
   actual_user = User.all.sample
-  product = Product.new(
-    title: instruments[i],
+  Product.create(
+    title: Faker::Music.instrument,
     description: Faker::Quote.jack_handey,
     price: rand(1..50),
+    photo: photo_url,
     user: actual_user,
     address: actual_user.address
   )
-  file = URI.open(photos[i])
-  product.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  product.save
   p Product.last
+
 end
