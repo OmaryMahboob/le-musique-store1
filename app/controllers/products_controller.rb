@@ -13,8 +13,14 @@ class ProductsController < ApplicationController
         marker_html: render_to_string(partial: "marker")
        }
     end
+    if params[:query].present?
+      sql_query = "title ILIKE :query OR description ILIKE :query"
+      @product = Product.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @product = Product.all
+    end
   end
-
+  
   def show
     @order = Order.new
   end
