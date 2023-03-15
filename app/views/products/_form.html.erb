@@ -42,6 +42,10 @@
               <div class="col-md-12 text-center">
                 <%= form.submit "Create Product", class: "btn btn-primary mb-4 col-3" %>
               </div>
+              <%= f.input :address,
+                input_html: {data: {address_autocomplete_target: "address"}},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+                %>
             <% end %>
             <%= link_to "Back to products", products_path %>
           </div>
