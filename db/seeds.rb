@@ -39,15 +39,48 @@ User.create(
   password: "123456"
 )
 
-100.times do
-  actual_user = User.all.sample
-  Product.create(
-    title: Faker::Music.instrument,
-    description: Faker::Quote.jack_handey,
-    price: rand(1..50),
+20.times do
+  Geocoder.configure(api_key: ENV.fetch('MAPBOX_API_KEY'))
+  sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Kurfürstendamm", "Alexanderplatz",
+                    "Karl-Marx-Straße", "Oranienburger Straße", "Kastanienallee", "Torstraße", "Simon-Dach-Straße",
+                    "Schönhauser Allee", "Warschauer Straße", "Kottbusser Tor", "Sonnenallee", "Hermannstraße",
+                    "Frankfurter Allee", "Neuköllnische Allee", "Mehringdamm", "Nollendorfplatz", "Bergmannstraße",
+                    "Yorckstraße", "Oderberger Straße", "Graefestraße", "Reichenberger Straße", "Schlesische Straße",
+                    "Kopenhagener Straße", "Boxhagener Straße", "Weserstraße", "Flughafenstraße", "Turmstraße"]
+  street = sample_address.sample
+  number = rand(1..70)
+  full_address = "#{street} #{number}, Berlin"
+
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    phone: Faker::PhoneNumber.phone_number,
+    address: full_address,
+    admin: true,
+    email: Faker::Internet.unique.email,
+    password: "123456"
+  )
+end
+
+instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "cello", "flute", "bass guitar", "ukulele",
+               "clarinet", "harmonica", "accordion", "trombone", "banjo", "mandolin", "harmonium", "xylophone",
+               "marimba", "didgeridoo", "bagpipes", "organ", "synthesizer", "harp", "oboe", "bassoon", "French horn",
+               "electric guitar", "acoustic guitar", "steel drum", "conga drum", "timpani", "tabla", "dulcimer",
+               "sitar", "kazoo", "bongos", "glockenspiel", "chimes", "vibraphone", "pan flute", "baglama", "oud",
+               "djembe", "thumb piano", "pandeiro", "tambourine"]
+
+25.times do
+  actual_user = User.order("RANDOM()").first
+  instrument = instruments.sample
+
+  Product.create!(
+    title: instrument.capitalize,
+    description: "Lease a high-quality #{instrument} from us today and start playing your favorite tunes! Our
+                  instruments are professionally maintained and ready to use. Whether you're a beginner or an
+                  experienced player, our #{instrument}s are perfect for all skill levels.",
+    price: rand(20..100),
     photo: "https://img.etimg.com/thumb/msid-81525531,width-650,height-488,imgsize-622277,,resizemode-75/music_thinkstockphotos.jpg",
     user: actual_user,
     address: actual_user.address
   )
-  p Product.last
 end
