@@ -45,6 +45,7 @@ User.create(
     title: Faker::Music.instrument,
     description: Faker::Quote.jack_handey,
     price: rand(1..50),
+    photo: "https://img.etimg.com/thumb/msid-81525531,width-650,height-488,imgsize-622277,,resizemode-75/music_thinkstockphotos.jpg",
     user: actual_user,
     address: actual_user.address
   )

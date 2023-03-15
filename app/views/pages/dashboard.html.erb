@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>Welcome to your dashboard <%= "#{current_user.first_name} #{current_user.last_name}" %> </h2>
+
+  <div class="d-flex">
+    <div class="d-flex flex-row">
+      <div>
+        <h3>your bookings</h3>
+          <% @orders.each do |order| %>
+          <div class="card">
+            <h4><%= order.product.title %></h4>
+            <p> Payment type: <%= order.payment_method %> </p>
+            <p> Booking duration : <%= order.start_date %> - <%= order.end_date %> </p>
+            <% end %>
+          </div>
+      </div>
+
+    </div>
+    <div class="d-flex flex-row">
+      <div class="float-child">
+      <h3>your products</h3>
+        <% @instruments.each do |product|%>
+        <div class="card">
+          <p>
+          <strong>Title:</strong>
+          <%= link_to product.title, product_path(product) %>
+
+          </p>
+
+          <p>
+          <strong>Description:</strong>
+          <%= product.description %>
+          </p>
+
+          <p>
+          <strong>Price:</strong>
+          <%= product.price %>
+          </p>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <%= link_to "Back to products", products_path %>
+
+</div>
