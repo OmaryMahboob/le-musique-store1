@@ -13,7 +13,7 @@
   <% end %>
   </div>
   <div>
-  <% if @product.user == current_user %>
+  <% if @product.user != current_user %>
     <%= render "orders/form", order: @order%>
   <% end %>
   </div>

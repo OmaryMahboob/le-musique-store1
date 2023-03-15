@@ -4,6 +4,15 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+
+    @markers = @products.geocoded.map do |product|
+      {
+        lat: product.latitude,
+        lng: product.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { product: product }),
+        marker_html: render_to_string(partial: "marker")
+       }
+    end
   end
 
   def show
@@ -62,6 +71,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:title, :description, :price, :user_id, :address)
+    params.require(:product).permit(:title, :description, :price, :user_id, :address, :photo)
   end
 end

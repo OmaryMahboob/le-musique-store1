@@ -9,8 +9,8 @@
     <p>
     <strong>Title:</strong>
     <%= link_to product.title, product_path(product) %>
-
     </p>
+    <img src="<%=product.photo%>" alt="<%=product.title%> photo" >
 
     <p>
     <strong>Description:</strong>
@@ -21,6 +21,10 @@
     <strong>Price:</strong>
     <%= product.price %>
     </p>
+    <div style="width: 100%; height: 600px;"
+       data-controller="map"
+       data-map-markers-value="<%= @markers.to_json %>"
+       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     <% end %>
   </div>
 

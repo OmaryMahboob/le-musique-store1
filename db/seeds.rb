@@ -39,22 +39,15 @@ User.create(
   password: "123456"
 )
 
-10.times do
-  Review.create(
-    content: Faker::Quote.jack_handey,
-    rating: rand(1..10)
-  )
-end
-
 100.times do
   actual_user = User.all.sample
   Product.create(
     title: Faker::Music.instrument,
     description: Faker::Quote.jack_handey,
     price: rand(1..50),
+    photo: "https://img.etimg.com/thumb/msid-81525531,width-650,height-488,imgsize-622277,,resizemode-75/music_thinkstockphotos.jpg",
     user: actual_user,
     address: actual_user.address
   )
   p Product.last
-
 end
