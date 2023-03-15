@@ -4,4 +4,5 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :address, presence: true
+>>>>>>>>> Temporary merge branch 2
 end
