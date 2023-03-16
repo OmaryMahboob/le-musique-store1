@@ -3,8 +3,12 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @products = Product.all
-
+    if params[:query].present?
+      sql_query = "title ILIKE :query OR description ILIKE :query"
+      @products = Product.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @products = Product.all
+    end   
     @markers = @products.geocoded.map do |product|
       {
         lat: product.latitude,
@@ -12,6 +16,7 @@ class ProductsController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: {product: product})
       }
     end
+
   end
 
   def show
