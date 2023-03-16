@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[edit destroy update]
+  resources :products, only: :index
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
