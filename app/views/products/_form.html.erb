@@ -7,7 +7,7 @@
             <h2 class="text-center m-4">New Product</h2>
           </div>
           <div class="card-body">
-            <%= form_with(model: product, html: { class: "row g-3" }) do |form| %>
+            <%= simple_form_for product, html: { class: "row g-3" } do |form| %>
               <% if product.errors.any? %>
                 <div class="col-md-12">
                   <div class="alert alert-danger" role="alert">
@@ -21,28 +21,25 @@
                 </div>
               <% end %>
               <div class="col-md-12">
-                <%= form.label :title, "Title", style: "display: block" %>
-                <%= form.text_field :title, class: "form-control" %>
+                <%= form.input :title, label: "Title", class: "form-control" %>
               </div>
               <div class="col-md-12">
-                <%= form.label :description, "Description", style: "display: block" %>
-                <%= form.text_area :description, class: "form-control" %>
+                <%= form.input :description, label: "Description", class: "form-control" %>
               </div>
               <div class="col-md-12">
-                <%= form.label :price, "Price", style: "display: block" %>
-                <%= form.number_field :price, class: "form-control" %>
+                <%= form.input :price, label: "Price", class: "form-control" %>
               </div>
               <div class="col-md-12">
-                <%= form.label :address, "Address", style: "display: block" %>
-                <%= form.text_field :address, value: current_user.address, readonly: true, class: "form-control disabled" %>
+                <%= form.input :address, label: "Address", input_html: { value: current_user.address, readonly: true, class: "form-control disabled" } %>
               </div>
-              <div>
-                <%= form.file_field :photo, class: "form-control" %>
+              <div class="col-md-12">
+                <%= form.input :photos, label: "Photos", as: :file, input_html: { multiple: true } %>
               </div>
               <div class="col-md-12 text-center">
-                <%= form.submit "Create Product", class: "btn btn-primary mb-4 col-3" %>
+                <%= form.button :submit, "Create Product", class: "btn btn-primary mb-4 col-3" %>
               </div>
             <% end %>
+          </div>
             <%= link_to "Back to products", products_path %>
           </div>
         </div>

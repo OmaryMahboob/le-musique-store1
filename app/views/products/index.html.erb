@@ -1,5 +1,6 @@
 <h1>Products list</h1>
 
+<%# Code for the Map %>
 <% if user_signed_in? %>
   <div id="map" style="width: 100%; height: 600px;"
     data-controller="map"
@@ -8,6 +9,7 @@
   </div>
 <% end %>
 
+<%# Code for the cards %>
 <div class="float-container">
    <div class="float-child">
     <h3> <%=link_to "Add new product", new_product_path %> </h3>
@@ -15,7 +17,7 @@
   <div class="float-child">
     <% @products.each do |product|%>
       <p> <strong>Title:</strong> <%= link_to product.title, product_path(product) %> </p>
-      <img src="<%=product.photo%>" alt="<%=product.title%> photo" >
+      <%= render 'photo_card', product: product %>
       <p> <strong>Description:</strong> <%= product.description %> </p>
       <p> <strong>Price:</strong> <%= product.price %> </p>
     <% end %>

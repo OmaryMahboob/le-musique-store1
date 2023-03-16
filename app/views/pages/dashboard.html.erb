@@ -6,7 +6,7 @@
     <% @orders.each do |order| %>
       <a href="<%= product_path(order.product) %>" class="link">
         <div class="card-booking">
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+            <%= render 'photos', order: order %>
             <div class="card-booking-infos">
               <span> <h2 class=""><strong><%= order.product.title %></strong></h2> </span>
               <span class="avatar-position">
@@ -28,14 +28,15 @@
   <div class="product-column">
     <h3 class="text-center">My products</h3>
     <% @instruments.each do |product|%>
-      <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
-        <div class="card-product-infos">
-          <h2><%= product.title %></h2>
-          <p><%= product.description %></p>
-          <%= link_to "See More", product_path(product) %>
+      <a href="<%= product_path(product) %>" class="link">
+        <div class="card-product">
+          <div class="img"> <%= render 'instrument', product: product %> </div>
+          <div class="card-product-infos">
+            <h2><%= product.title %></h2>
+            <p><%= product.description %></p>
+          </div>
         </div>
-      </div>
+      </a>
       <br>
     <% end %>
   </div>
