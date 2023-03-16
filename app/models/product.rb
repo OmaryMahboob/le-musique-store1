@@ -9,10 +9,6 @@ class Product < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   pg_search_scope :search_by_title_and_description,
   against: [ :title, :description ],
-    using: {
-        tsearch: { prefix: true } # <-- now `drum tru` will return something!
-
-        }
-
+  using: { tsearch: { prefix: true } }
   multisearchable against: [:title, :description]
 end
