@@ -1,16 +1,23 @@
-
 <div class="card-body">
-<h3>Book this instrument</h3>
-
+  <h3>Book this instrument</h3>
 
   <div class="form-control">
-  <%= simple_form_for [@product, @order] do |f| %>
-    <% payment_types = ["Cash", "Check", "Debit cards", "Credit card", "Mobile payment"] %>
-    <%= f.input :payment_method, collection: payment_types %>
-    <%= f.input :start_date, html5: true %>
-    <%= f.input :end_date, html5: true %>
+    <%= simple_form_for [@product, @order] do |f| %>
+      <% payment_types = ["Cash", "Check", "Debit card", "Credit card", "Mobile payment"] %>
+      <%= f.input :payment_method,
+                  required: true,
+                  collection: payment_types %>
+      <%= f.input :start_date,
+                  required: true,
+                  html5: true,
+                  min: Date.today.strftime('%d/%m/%Y'),
+                  value: Date.today.strftime('%d/%m/%Y') %>
+      <%= f.input :end_date,
+                  required: true,
+                  html5: true,
+                  min: (Date.today + 1.day).strftime('%d/%m/%Y') %>
 
-    <%= f.button :submit, class: "btn btn-primary mb-4 col-3" %>
-  <% end %>
-</div>
+      <%= f.button :submit, class: "btn btn-primary mb-4 col-3" %>
+    <% end %>
+  </div>
 </div>

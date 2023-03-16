@@ -9,14 +9,19 @@ class ProductsController < ApplicationController
       {
         lat: product.latitude,
         lng: product.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { product: product }),
-        marker_html: render_to_string(partial: "marker")
-       }
+        info_window_html: render_to_string(partial: "info_window", locals: {product: product})
+      }
     end
   end
 
   def show
     @order = Order.new
+
+    @marker = {
+      lat: @product.latitude,
+      lng: @product.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { product: @product })
+    }
   end
 
   def new
@@ -66,7 +71,7 @@ class ProductsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.geocoded.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
