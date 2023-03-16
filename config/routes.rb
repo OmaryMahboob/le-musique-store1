@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create]
   end
   resources :orders, only: %i[edit destroy update]
+  resources :products, only: :index
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
