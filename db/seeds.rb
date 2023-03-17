@@ -1,4 +1,5 @@
 require "faker"
+require "open-uri"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -9,13 +10,37 @@ require "faker"
 Product.destroy_all
 User.destroy_all
 
-User.create(
+mahboob = User.create(
   first_name: "mahboob",
   last_name: "omary",
   phone: "098876544",
   address: "Magazinstraße 15-16, 10179 Berlin",
   email: "mahboob@gmail.com",
   password: "123456"
+)
+
+mahboob_product = Product.create!(
+  title: "Rubab",
+  description: "Afghanistan's national instrument, good sound",
+  price: rand(20..100),
+  user: mahboob,
+  address: mahboob.address
+)
+
+mahboob_product.photos.attach(
+  io: URI.open("https://dailymusicroll.s3.us-west-2.amazonaws.com/wp-content/uploads/2022/04/21160802/5499313034_11ba8fdcf8_b.jpg"),
+  filename: "photo_rubab1.jpeg",
+  content_type: "image/jpg"
+)
+mahboob_product.photos.attach(
+  io: URI.open("https://i.guim.co.uk/img/media/bdc6551c0615762ef8e523dedfbe72a0daacc722/0_197_1791_1075/master/1791.jpg?width=1200&quality=85&auto=format&fit=max&s=1f7e5f7a7df79bf5936284cc52d2da18"),
+  filename: "photo_rubab2.jpeg",
+  content_type: "image/jpg"
+)
+mahboob_product.photos.attach(
+  io: URI.open("https://i.ytimg.com/vi/RCabnDJ8Tgc/maxresdefault.jpg"),
+  filename: "photo_rubab3.jpeg",
+  content_type: "image/jpg"
 )
 
 User.create(
@@ -27,13 +52,26 @@ User.create(
   password: "123456"
 )
 
-User.create(
+roger = User.create(
   first_name: "Roger",
   last_name: "Silva",
   phone: "017676490923",
   address: "Goslarer Ufer 3, 10589 Berlin",
   email: "roger.silva@live.cl",
   password: "123456"
+)
+roger_product = Product.create!(
+  title: "Charango",
+  description: "Excellent condition charango, crafted from high-quality wood with warm, authentic tones.
+                Perfect for all levels of musicians. Don't miss out on this beautiful, traditional Andean instrument.",
+  price: rand(20..100),
+  user: roger,
+  address: roger.address
+)
+roger_product.photos.attach(
+  io: URI.open("https://musiculum.de/wp-content/uploads/2021/02/Charango.jpg"),
+  filename: "photo_charango1.jpeg",
+  content_type: "image/jpg"
 )
 
 20.times do
@@ -75,7 +113,6 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
                   instruments are professionally maintained and ready to use. Whether you're a beginner or an
                   experienced player, our #{instrument}s are perfect for all skill levels.",
     price: rand(20..100),
-    photo: "https://img.etimg.com/thumb/msid-81525531,width-650,height-488,imgsize-622277,,resizemode-75/music_thinkstockphotos.jpg",
     user: actual_user,
     address: actual_user.address
   )
