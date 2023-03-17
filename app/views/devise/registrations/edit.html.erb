@@ -4,7 +4,7 @@
       <div class="card mt-2">
         <div class="m-2">
           <div class="card-header">
-            <h2 class="text-center m-4">Edit <%= resource_name.to_s.humanize %></h2>
+            <h2 class="text-center m-4">Edit your information</h2>
           </div>
           <div class="card-body">
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -40,6 +40,7 @@
                               input_html: { autocomplete: "new-password", class: "form-control" },
                               label: 'Confirm new password' %>
                 </div>
+                <h4>Personal information</h4>
                 <div class="col-md-6">
                   <%= f.input :first_name,
                               required: false,
@@ -61,9 +62,10 @@
                   <%= f.input :address,
                               required: false,
                               autofocus: true,
-                              input_html: { data: { address_autocomplete_target: "address" } },
+                              input_html: { data: { address_autocomplete_target: "address", class: 'd-none form-control disabled' }},
                               wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
                 </div>
+                <div class="col-md-6">
               </div>
               <div class="col-12 text-center">
                 <%= f.button :submit, "Update my account", class: "btn btn-primary mb-4 col-3" %>
@@ -73,7 +75,7 @@
                 <%= link_to "Go back", :back, class: "ml-2" %>
               </div>
               <div class="col-12">
-                <p>Not happy with us? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %> </p>
+              <p><%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></p>
               </div>
             </div>
           </div>

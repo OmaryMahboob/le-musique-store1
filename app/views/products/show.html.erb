@@ -1,6 +1,39 @@
+<% unless user_signed_in? %>
+  <div class="alert alert-warning" role="alert">
+    You must be logged in to view all the customer information.
+  </div>
+<% end %>
 
-<%= render "product", product: @product %>
+<h1 class="text-center"><%= @product.title %></h1>
 
+<div class="container">
+  <div class="row"> <%= render 'photo_carrousel' %> </div>
+
+  <div class="row">
+    <p><strong>Description:</strong> <%= @product.description %></p>
+    <p><strong>Price:</strong> <%= @product.price %> €</p>
+
+    <% if user_signed_in? %>
+      <p><strong>Email: </strong><%= @product.user.email %></p>
+      <p><strong>Address: </strong><%= @product.address %></p>
+
+      <% unless @product.user == current_user %>
+        <div id="map" style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= [@marker].to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      <% end %>
+
+      <% if @product.user != current_user %>
+        <%= render "orders/form", order: @order%>
+      <% else %>
+        <%= link_to "Edit this product", edit_product_path(@product) %>
+        <%= button_to "Destroy this product", @product, method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <div>
   <div>
   <%= link_to "Back to products", products_path %>
