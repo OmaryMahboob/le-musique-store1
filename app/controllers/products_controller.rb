@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
       @products = Product.where(sql_query, query: "%#{params[:query]}%")
     else
       @products = Product.all
-    end   
+    end
     @markers = @products.geocoded.map do |product|
       {
         lat: product.latitude,
@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: {product: product})
       }
     end
-
   end
 
   def show
