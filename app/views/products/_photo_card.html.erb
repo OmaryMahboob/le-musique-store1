@@ -23,8 +23,10 @@
   </div>
 <% elsif product.photos.size == 1 %>
   <% product.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, class: "d-block w-100" %>
+    <%= cl_image_tag photo, class: "d-block w-100" %>
   <% end %>
+<% elsif product.photo%>
+  <%= cl_image_tag product.photo %>
 <% else %>
   <%= cl_image_tag("no-image_m7jnrj") %>
 <% end %>

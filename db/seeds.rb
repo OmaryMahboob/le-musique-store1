@@ -68,6 +68,8 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
 25.times do
   actual_user = User.order("RANDOM()").first
   instrument = instruments.sample
+  uploaded_image = Cloudinary::Uploader.upload("https://res.cloudinary.com/dvrfyi1tt/image/upload/v1677664082/samples/people/jazz.jpg")
+
 
   Product.create!(
     title: instrument.capitalize,
@@ -75,7 +77,7 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
                   instruments are professionally maintained and ready to use. Whether you're a beginner or an
                   experienced player, our #{instrument}s are perfect for all skill levels.",
     price: rand(20..100),
-    photo: "https://img.etimg.com/thumb/msid-81525531,width-650,height-488,imgsize-622277,,resizemode-75/music_thinkstockphotos.jpg",
+    photo: uploaded_image['url'].to_sym,
     user: actual_user,
     address: actual_user.address
   )
