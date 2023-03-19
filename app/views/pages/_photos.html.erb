@@ -1,30 +1,5 @@
-<% if order.product.photos.size > 1 %>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <% order.product.photos.each_with_index do |photo, index| %>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>" aria-current="<%= index == 0 %>" aria-label="Slide <%= index + 1 %>"></button>
-      <% end %>
-    </div>
-    <div class="carousel-inner image-left">
-      <% order.product.photos.each_with_index do |photo, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %>">
-          <%= cl_image_tag photo.key, class: "h-100 d-inline-block" %>
-        </div>
-      <% end %>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-<% elsif order.product.photos.size == 1 %>
-  <% order.product.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, class: "h-100 d-inline-block image-left" %>
-  <% end %>
+<% if order.product.photos.attached? %>
+  <%= cl_image_tag order.product.photos.first.key, class: "mh-100 image-left" %>
 <% else %>
-  <%= cl_image_tag("no-image_m7jnrj", class: "h-100 d-inline-block image-left") %>
+  <%= cl_image_tag("no-image_m7jnrj", class: "d-inline-block image-left") %>
 <% end %>

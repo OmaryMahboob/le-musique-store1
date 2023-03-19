@@ -14,12 +14,11 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <div class= <%= params[:action] == "home" ? "" : "container mt-3" %>>
-      <%= render "shared/flashes" %>
+    <%= render "shared/flashes" %>
+    <div class="<%= params[:action] == 'home' ? '' : 'container mt-3' %>">
       <%= yield %>
-      <br>
     </div>
-
+    <br>
     <%= render 'shared/footer' %>
   </body>
 </html>
