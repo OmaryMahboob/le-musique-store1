@@ -11,7 +11,12 @@
   justify-content: center;
 }
 
-.d-flex:hover{
-  color: rgb(21, 135, 249);
-  transition: 1s ease;
+
+
+.img-link{
+  transition: .3s;
+}
+.img-link:hover {
+  transform: scale(1.05);
+  transition: .3s;
 }

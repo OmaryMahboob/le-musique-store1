@@ -1,5 +1,5 @@
 <% if order.product.photos.attached? %>
-  <%= cl_image_tag order.product.photos.first.key, class: "mh-100 image-left" %>
+  <%= cl_image_tag order.product.photos.first.key, class: "mh-100 image-left hover-zoom" %>
 <% else %>
-  <%= cl_image_tag("no-image_m7jnrj", class: "d-inline-block image-left") %>
+  <%= cl_image_tag("no-image_m7jnrj", class: "d-inline-block image-left hover-zoom") %>
 <% end %>
