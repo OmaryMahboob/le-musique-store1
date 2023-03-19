@@ -1,5 +1,5 @@
 <% if product.photos.attached? %>
-  <%= cl_image_tag product.photos.first.key, class: "mh-100 image-right" %>
+  <%= cl_image_tag product.photos.first.key, class: "mh-100 w-100 image-right" %>
 <% else %>
-  <%= cl_image_tag("no-image_m7jnrj", class: "mh-100 image-right") %>
+  <%= cl_image_tag("no-image_m7jnrj", class: "mh-100 w-100 image-right") %>
 <% end %>
