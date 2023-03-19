@@ -1,4 +1,18 @@
-<h1>Editing product <%= @product.title %></h1>
-<%= render "form", product: @product %>
-
-<br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mt-2">
+        <div class="m-2">
+          <div class="card-header">
+            <h2 class="text-center m-4">Editing your <%= @product.title %></h2>
+          </div>
+          <div class="card-body">
+            <%= render "form", product: @product %>
+          </div>
+            <%= link_to "Back to products", products_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

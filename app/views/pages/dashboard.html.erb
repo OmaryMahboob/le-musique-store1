@@ -11,7 +11,11 @@
               <div class="card-booking-infos">
                 <span> <h2 class=""><strong><%= order.product.title %></strong></h2> </span>
                 <span class="avatar-position">
-                  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-booking-user avatar-bordered" />
+                  <% if order.product.user.profile_picture.attached? %>
+                    <%= cl_image_tag order.product.user.profile_picture.key, class: 'card-booking-user avatar-bordered' %>
+                  <% else %>
+                    <%= cl_image_tag("no-profile-picture_zttuuq", class: "card-booking-user avatar-bordered") %>
+                  <% end %>
                 </span>
               </div>
               <div class="card-infos">
@@ -25,9 +29,10 @@
         </a>
       <br>
       <% end %>
+      <p class="text-center"> <%= link_to "Book another instrument now", products_path, class: "btn btn-outline-primary" %> </p>
     <% else %>
     <p class="text-center pt-2">You didn't book any instruments yet, </p>
-    <p class="text-center"> <%= link_to "Book an instrument now.", products_path, class: "btn btn-outline-primary" %> </p>
+    <p class="text-center"> <%= link_to "Book an instrument now", products_path, class: "btn btn-outline-primary" %> </p>
     <% end %>
   </div>
   <div class="product-column">
@@ -45,9 +50,10 @@
         </a>
         <br>
       <% end %>
+      <p class="text-center"><%= link_to "Create another product", new_product_path, class: "btn btn-outline-primary" %> </p>
     <% else %>
     <p class="text-center pt-2">You don't have any instruments yet, </p>
-    <p class="text-center"><%= link_to "Create a new product.", new_product_path, class: "btn btn-outline-primary" %> </p>
+    <p class="text-center"><%= link_to "Create a new product", new_product_path, class: "btn btn-outline-primary" %> </p>
     <% end %>
   </div>
 </div>

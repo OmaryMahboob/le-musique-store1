@@ -12,18 +12,22 @@
         <%= submit_tag "Search", class: "btn btn-outline-success" %>
       <% end %>
     </div>
-    <div class="text-end px-5">
-      <ul class="navbar-nav flex-row action-logo">
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link active", "aria-current" => "page" %>
+    <div class="text-end px-5 ">
+      <ul class="navbar-nav flex-row action-logo align-items-center">
+        <li class="nav-item col">
+          <%= link_to "Home", root_path, class: "nav-link active align-items-center", "aria-current" => "page" %>
         </li>
         <% if user_signed_in? %>
-          <li class="nav-item">
+          <li class="nav-item col">
             <%= link_to "Dashboard", dashboard_path, class: "nav-link"%>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Link
+              <% if current_user.profile_picture.attached? %>
+                <%= cl_image_tag current_user.profile_picture.key, class: 'profile-picture-small' %>
+              <% else %>
+                <%= cl_image_tag("no-profile-picture_zttuuq", class: "profile-picture-small") %>
+              <% end %>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Marketplace", products_path, class: "nav-link" %></li>

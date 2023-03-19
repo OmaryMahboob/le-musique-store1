@@ -1,0 +1,5 @@
+<% if @user.profile_picture.attached? %>
+  <%= cl_image_tag @user.profile_picture.key, class: 'profile-picture' %>
+<% else %>
+  <%= cl_image_tag("no-profile-picture_zttuuq", class: "profile-picture") %>
+<% end %>

@@ -1,16 +1,7 @@
 require "faker"
 require "open-uri"
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-Product.destroy_all
-User.destroy_all
 
-mahboob = User.create(
+mahboob = User.create!(
   first_name: "mahboob",
   last_name: "omary",
   phone: "098876544",
@@ -18,6 +9,13 @@ mahboob = User.create(
   email: "mahboob@gmail.com",
   password: "123456"
 )
+
+mahboob.profile_picture.attach(
+  io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1667037206/tri21is6dulhoce0cocq.jpg"),
+  filename: "profile_picture_mahboob.jpeg",
+  content_type: "image/jpg"
+)
+mahboob.save
 
 mahboob_product = Product.create!(
   title: "Rubab",
@@ -43,7 +41,7 @@ mahboob_product.photos.attach(
   content_type: "image/jpg"
 )
 
-User.create(
+jane = User.create(
   first_name: "Jane",
   last_name: "Eme",
   phone: "098876544",
@@ -51,6 +49,13 @@ User.create(
   email: "martins@test.com",
   password: "123456"
 )
+
+jane.profile_picture.attach(
+  io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1667074864/tkaswximthoisj8cucbd.jpg"),
+  filename: "profile_picture_jane.jpeg",
+  content_type: "image/jpg"
+)
+jane.save
 
 roger = User.create(
   first_name: "Roger",
@@ -60,6 +65,14 @@ roger = User.create(
   email: "roger.silva@live.cl",
   password: "123456"
 )
+
+roger.profile_picture.attach(
+  io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1678216566/dp1l8wttyzcs2ynmpbqf.jpg"),
+  filename: "profile_picture_roger.jpeg",
+  content_type: "image/jpg"
+)
+roger.save
+
 roger_product = Product.create!(
   title: "Charango",
   description: "Excellent condition charango, crafted from high-quality wood with warm, authentic tones.
@@ -74,26 +87,37 @@ roger_product.photos.attach(
   content_type: "image/jpg"
 )
 
-20.times do
-  Geocoder.configure(api_key: ENV.fetch('MAPBOX_API_KEY'))
-  sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Kurfürstendamm", "Alexanderplatz",
-                    "Karl-Marx-Straße", "Oranienburger Straße", "Kastanienallee", "Torstraße", "Simon-Dach-Straße",
-                    "Schönhauser Allee", "Warschauer Straße", "Kottbusser Tor", "Sonnenallee", "Hermannstraße",
-                    "Frankfurter Allee", "Neuköllnische Allee", "Mehringdamm", "Nollendorfplatz", "Bergmannstraße",
-                    "Yorckstraße", "Oderberger Straße", "Graefestraße", "Reichenberger Straße", "Schlesische Straße",
-                    "Kopenhagener Straße", "Boxhagener Straße", "Weserstraße", "Flughafenstraße", "Turmstraße"]
-  street = sample_address.sample
-  number = rand(1..70)
-  full_address = "#{street} #{number}, Berlin"
+first_names = ["Avery", "Blake", "Cameron", "Charlie", "Dakota", "Drew", "Eliot", "Emerson", "Frankie", "Harley",
+               "Hayden", "Hunter", "Jamie", "Jesse", "Jordan", "Jules", "Kai", "Kelly", "Kendall", "Lee", "Logan",
+               "Max", "Morgan", "Noah", "Parker", "Phoenix", "Quinn", "Reagan", "Reese", "River", "Robin", "Rowan",
+               "Sage", "Sam", "Sawyer", "Shawn", "Sidney", "Skyler", "Spencer", "Stevie", "Tanner", "Tatum",
+               "Taylor", "Tristan", "Tyler", "Vivian", "Wesley", "Zion"]
 
-  User.create(
-    first_name: Faker::Name.first_name,
+sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Kurfürstendamm", "Alexanderplatz",
+                  "Karl-Marx-Straße", "Oranienburger Straße", "Kastanienallee", "Torstraße", "Simon-Dach-Straße",
+                  "Schönhauser Allee", "Warschauer Straße", "Kottbusser Tor", "Sonnenallee", "Hermannstraße",
+                  "Frankfurter Allee", "Neuköllnische Allee", "Mehringdamm", "Nollendorfplatz", "Bergmannstraße",
+                  "Yorckstraße", "Oderberger Straße", "Graefestraße", "Reichenberger Straße", "Schlesische Straße",
+                  "Kopenhagener Straße", "Boxhagener Straße", "Weserstraße", "Flughafenstraße", "Turmstraße"]
+street = sample_address.sample
+number = rand(1..70)
+full_address = "#{street} #{number}, Berlin"
+
+30.times do
+  new_user = User.create(
+    first_name: first_names.sample,
     last_name: Faker::Name.last_name,
     phone: Faker::PhoneNumber.phone_number,
     address: full_address,
     email: Faker::Internet.unique.email,
     password: "123456"
   )
+  new_user.profile_picture.attach(
+    io: URI.open("https://kitt.lewagon.com/placeholder/users/random"),
+    filename: "profile_picture_#{new_user.first_name}.jpeg",
+    content_type: "image/jpg"
+  )
+  new_user.save
 end
 
 instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "cello", "flute", "bass guitar", "ukulele",
@@ -103,16 +127,16 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
                "sitar", "kazoo", "bongos", "glockenspiel", "chimes", "vibraphone", "pan flute", "baglama", "oud",
                "djembe", "thumb piano", "pandeiro", "tambourine"]
 
-25.times do
+35.times do
   actual_user = User.order("RANDOM()").first
   instrument = instruments.sample
 
   Product.create!(
     title: instrument.capitalize,
-    description: "Lease a high-quality #{instrument} from us today and start playing your favorite tunes! Our
-                  instruments are professionally maintained and ready to use. Whether you're a beginner or an
-                  experienced player, our #{instrument}s are perfect for all skill levels.",
-    price: rand(20..100),
+    description: "Lease a high-quality #{instrument} today and start playing your favorite tunes! This #{instrument}
+                  is super professional and I keep it ready for your use. Whether you're a beginner or an
+                  experienced player, this #{instrument} is perfect for your level.",
+    price: rand(20..80),
     user: actual_user,
     address: actual_user.address
   )

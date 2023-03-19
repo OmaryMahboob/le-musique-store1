@@ -46,6 +46,7 @@
                 <%= f.input :phone,
                             required: true,
                             autofocus: true,
+                            placeholder: "01234567890",
                             input_html: { autocomplete: "phone", class: "form-control" },
                             label: 'Phone' %>
               </div>
@@ -55,6 +56,9 @@
                             autofocus: true,
                             input_html: { :autocomplete => "street-address", class: 'd-none form-control' },
                             wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+              </div>
+              <div class="col-md-12">
+                <%= f.input :profile_picture, as: :file, required: false %>
               </div>
               <div class="col-12 text-center">
                 <%= f.button :submit, "Sign up", class: "btn btn-primary mb-4 col-3" %>
