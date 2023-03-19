@@ -38,3 +38,21 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+<div class="container">
+  <h2 class="text-center mt-3">Recent Products</h2>
+  <div class= "card d-flex flex-row justify-content-center">
+    <% @newproducts.each do |product|%>
+      <div class=" card-product flex-fill h-100 p-3">
+        <a href=<%= product_path(product) %> class="link">
+          <%= render 'instrument', product: product %>
+          <div class="card-body">
+            <h2 ><%= product.title %></h2>
+            <p><%= product.description %></p>
+          </div>
+        </a>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>
