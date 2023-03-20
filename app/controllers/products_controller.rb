@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.user_id = current_user
+    @product.address = current_user.address
   end
 
   def edit
@@ -47,7 +48,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to products_url, notice: "Product was successfully updated."
+      redirect_to products_path, notice: "Product was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,7 +56,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_url, notice: "Product was successfully destroyed."
+    redirect_to products_path, notice: "Product was successfully destroyed."
   end
 
   private

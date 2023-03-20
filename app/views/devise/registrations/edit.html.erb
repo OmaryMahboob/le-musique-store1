@@ -54,14 +54,12 @@
                 <div class="col-md-6">
                   <%= f.input :phone,
                               required: false,
-                              autofocus: true,
                               input_html: { autocomplete: "phone", value: resource.phone, class: "form-control" },
                               label: 'Phone' %>
                 </div>
                 <div class="col-md-6">
                   <%= f.input :address,
                               required: false,
-                              autofocus: true,
                               input_html: { data: { address_autocomplete_target: "address", class: 'd-none form-control disabled' }},
                               wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
                 </div> <br>
