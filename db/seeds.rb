@@ -99,11 +99,12 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
                   "Frankfurter Allee", "Neuköllnische Allee", "Mehringdamm", "Nollendorfplatz", "Bergmannstraße",
                   "Yorckstraße", "Oderberger Straße", "Graefestraße", "Reichenberger Straße", "Schlesische Straße",
                   "Kopenhagener Straße", "Boxhagener Straße", "Weserstraße", "Flughafenstraße", "Turmstraße"]
-street = sample_address.sample
-number = rand(1..70)
-full_address = "#{street} #{number}, Berlin"
 
 30.times do
+  street = sample_address.sample
+  number = rand(1..70)
+  full_address = "#{street} #{number}, Berlin"
+
   new_user = User.create(
     first_name: first_names.sample,
     last_name: Faker::Name.last_name,
