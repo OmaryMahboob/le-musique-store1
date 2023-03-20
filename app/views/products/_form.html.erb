@@ -1,49 +1,41 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card mt-2">
-        <div class="m-2">
-          <div class="card-header">
-            <h2 class="text-center m-4">New Product</h2>
-          </div>
-          <div class="card-body">
-            <%= simple_form_for product, html: { class: "row g-3" } do |form| %>
-              <% if product.errors.any? %>
-                <div class="col-md-12">
-                  <div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading"><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h4>
-                    <ul>
-                      <% product.errors.full_messages.each do |error| %>
-                        <li><%= error %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                </div>
-              <% end %>
-              <div class="col-md-12">
-                <%= form.input :title, label: "Title", class: "form-control" %>
-              </div>
-              <div class="col-md-12">
-                <%= form.input :description, label: "Description", class: "form-control" %>
-              </div>
-              <div class="col-md-12">
-                <%= form.input :price, label: "Price", class: "form-control" %>
-              </div>
-              <div class="col-md-12">
-                <%= form.input :address, label: "Address", input_html: { value: current_user.address, readonly: true, class: "form-control disabled" } %>
-              </div>
-              <div class="col-md-12">
-                <%= form.input :photos, label: "Photos", as: :file, input_html: { multiple: true } %>
-              </div>
-              <div class="col-md-12 text-center">
-                <%= form.button :submit, "Create Product", class: "btn btn-primary mb-4 col-3" %>
-              </div>
-            <% end %>
-          </div>
-            <%= link_to "Back to products", products_path %>
-          </div>
-        </div>
-      </div>
+<%= simple_form_for product, html: { class: "row g-3" } do |f| %>
+  <% if product.errors.any? %>
+    <div class="col-md-12">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h4>
+      <ul>
+        <% product.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
-</div>
+  <% end %>
+  <div class="col-md-12">
+    <%= f.input :title, label: "Title", class: "form-control" %>
+  </div>
+  <div class="col-md-12">
+    <%= f.input :description, label: "Description", class: "form-control" %>
+  </div>
+  <div class="col-md-12">
+    <%= f.input :price, label: "Price", class: "form-control" %>
+  </div>
+  <div class="col-md-12">
+  <%= f.input :address,
+    label: "Address",
+    required: true,
+    autofocus: true,
+    input_html: { :autocomplete => "street-address", class: 'd-none form-control' },
+    wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+  </div>
+  <div class="col-md-12">
+    <%= f.input :photos, label: "Photos", as: :file, input_html: { multiple: true } %>
+  </div>
+  <div class="col-md-12 text-center">
+    <% if product.new_record? %>
+      <%= f.button :submit, "Create new product", class: "btn btn-primary mb-4 col-3" %>
+    <% else %>
+      <%= f.button :submit, "Edit your product", class: "btn btn-primary mb-4 col-3" %>
+    <% end %>
+  </div>
+<% end %>
