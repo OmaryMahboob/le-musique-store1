@@ -2,7 +2,6 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home]
 
   def home
-    @newproducts = Product.last(5).reverse
   end
 
   def dashboard

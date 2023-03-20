@@ -10,39 +10,16 @@
 <% end %>
 
 <%# Code for the cards %>
-<div class="container">
-  <div>
+<div class="float-container">
+   <div class="float-child">
     <h3> <%=link_to "Add new product", new_product_path %> </h3>
   </div>
-  <div class="card d-flex">
+  <div class="float-child">
     <% @products.each do |product|%>
-      <%# <div class="card-title" link_to product.title, product_path(product)> %>
-      <div class="card-body">
-        <h5 class="card-title"> <strong>Title:</strong> <%= product.title%> </h5>
-        <div class="col-4">
-          <%= render 'photo_card', product: product %>
-        </div>
-        <p class="card-sub"> <strong>Price:</strong> <%= product.price %> </p>
-        <p class="card-text"> <strong>Description:</strong> <%= product.description %> </p>
-      </div>
+      <p> <strong>Title:</strong> <%= link_to product.title, product_path(product) %> </p>
+      <%= render 'photo_card', product: product %>
+      <p> <strong>Description:</strong> <%= product.description %> </p>
+      <p> <strong>Price:</strong> <%= product.price %> </p>
     <% end %>
   </div>
-</div>
-<%#
-<div class="container">
-  <h2 class="text-center mt-3">Recent Products</h2>
-  <div class= "card  d-flex  flex-row align-items-stretch">
-    <% @products.each do |product|%>
-      <%# <div class=" card-body  h-100 p-3">
-        <a href=<%= product_path(product) %>
-          <%# <div class="img-link mb-3"><%= render 'instrument', product: product %></div>
-          <%# <div class="card-text ">
-            <h2 ><%= product.title %></h2>
-            <%# <p><%= truncate(product.description, length: 150) %></p>
-          <%# </div>
-        </a>
-      </div>
-      <br>
-    <% end %>
-  <%# </div>
 </div>
