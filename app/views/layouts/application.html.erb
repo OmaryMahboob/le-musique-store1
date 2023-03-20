@@ -15,7 +15,7 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render "shared/flashes" %>
-    <div class="<%= params[:action] == 'home' ? '' : 'container mt-3' %>">
+    <div class="<%= params[:action] == 'home' ? '' : 'container mt-3 home-page' %>">
       <%= yield %>
     </div>
     <br>

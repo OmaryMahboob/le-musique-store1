@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to products_path
     else
-      render "product/show", status: :unproccesible_entity
+      render "products/show", status: :unprocessable_entity
     end
   end
 
