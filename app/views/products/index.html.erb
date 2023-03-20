@@ -23,16 +23,62 @@
 <% end %>
 
 <%# Code for the cards %>
-<div class="float-container">
-   <div class="float-child">
-    <h3> <%=link_to "Add new product", new_product_path %> </h3>
-  </div>
-  <div class="float-child">
+<div>
+  <h3> <%=link_to "Add new product", new_product_path, style: "" %> </h3>
+  <div class="card d-flex grow w-25">
     <% @products.each do |product|%>
-      <p> <strong>Title:</strong> <%= link_to product.title, product_path(product) %> </p>
-      <%= render 'photo_card', product: product %>
-      <p> <strong>Description:</strong> <%= product.description %> </p>
-      <p> <strong>Price:</strong> <%= product.price %> </p>
+      <%= link_to product_path(product), class: "product-link" do %>
+        <div class="card-body  product-link">
+          <div class="img-render">
+            <%= render 'pages/instrument', product: product%>
+          </div>
+          <h5 class="card-title mt-3"> <strong>Title:</strong> <%= product.title%> </h5>
+          <p class="card-sub"> <strong>Price:</strong> <%= product.price %> </p>
+          <p class="card-text"> <strong>Description:</strong> <%= product.description %> </p>
+        </div>
+      <% end %>
     <% end %>
+  </div>
+</div>
+
+
+<%#  %>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
   </div>
 </div>

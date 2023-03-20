@@ -37,5 +37,21 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-</div>
 
+  <div class=" bg-white pt-4 pb-4">
+    <h2 class="text-center pb-4">Recent Products</h2>
+    <div class= "container card  d-flex bg-light flex-row align-items-stretch">
+      <% @new_products.each do |product|%>
+        <div class=" card-body  h-100 p-3">
+          <a href=<%= product_path(product) %> class="link">
+            <div class="img-link mb-3"><%= render 'instrument', product: product %></div>
+            <div class="card-text ">
+              <h2 ><%= product.title %></h2>
+              <p><%= truncate(product.description, length: 150) %></p>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

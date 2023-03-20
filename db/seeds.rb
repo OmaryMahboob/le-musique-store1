@@ -128,7 +128,7 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
                "sitar", "kazoo", "bongos", "glockenspiel", "chimes", "vibraphone", "pan flute", "baglama", "oud",
                "djembe", "thumb piano", "pandeiro", "tambourine"]
 
-35.times do
+39.times do
   actual_user = User.order("RANDOM()").first
   instrument = instruments.sample
 

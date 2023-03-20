@@ -1,0 +1,14 @@
+<div class="card d-flex grow">
+    <% @products.each do |product|%>
+      <%= link_to product_path(product), class: "product-link" do %>
+        <div class="card-body w-25 product-link">
+          <div class="img-render">
+            <%= render 'pages/instrument', product: product%>
+          </div>
+          <h5 class="card-title mt-3"> <strong>Title:</strong> <%= product.title%> </h5>
+          <p class="card-sub"> <strong>Price:</strong> <%= product.price %> </p>
+          <p class="card-text"> <strong>Description:</strong> <%= product.description %> </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
