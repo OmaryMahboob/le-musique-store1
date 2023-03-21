@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-
   def create
     @product = Product.find(params[:product_id])
     @order = Order.new(order_params)
@@ -23,5 +22,4 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:payment_method, :start_date, :end_date)
   end
-
 end
