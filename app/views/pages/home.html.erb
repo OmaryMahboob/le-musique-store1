@@ -8,23 +8,22 @@
     <div class="carousel-item active">
       <%= image_tag "img_home_1.jpg", alt:"home-image-1" %>
       <div class="carousel-caption d-none d-md-block">
-        <h5>EXAMPLE FOR FILL</h5>
+        <h1 class="lh-base texto-grande">La Musique <em>marketplace</em></h1>
+        <h5 class="lh-base texto-grande">Everything that you need for your skills</h5>
         <%= link_to "Go to the marketplace", products_path, class: "btn btn-primary text-white" %>
       </div>
     </div>
     <div class="carousel-item">
       <%= image_tag "img_home_2.jpg", alt:"home-image-2" %>
       <div class="carousel-caption d-none d-md-block">
-        <h5>EXAMPLE FOR FILL</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid placeat velit reprehenderit necessitatibus optio alias quia sed soluta minima aperiam veniam dolorem iure animi eligendi, quibusdam laudantium ipsam enim laboriosam.</p>
+        <h3 class="lh-base texto-grande">Find new products here</h3>
         <%= link_to "Go to the marketplace", products_path, class: "btn btn-primary text-white" %>
       </div>
     </div>
     <div class="carousel-item">
       <%= image_tag "img_home_3.jpg", alt:"home-image-3" %>
       <div class="carousel-caption d-none d-md-block">
-        <h5>EXAMPLE FOR FILL</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor fugit, ducimus optio, officiis dignissimos voluptatum eligendi velit itaque repellat aspernatur excepturi quis, veritatis incidunt perspiciatis quaerat odio similique necessitatibus iste!</p>
+        <h3 class="lh-base texto-grande">Develop your musical skills</h3>
         <%= link_to "Go to the marketplace", products_path, class: "btn btn-primary text-white" %>
       </div>
     </div>
@@ -39,7 +38,7 @@
   </button>
 </div>
 
-<div class=" bg-white pt-4 pb-4">
+<div class="pt-4 pb-4" style="border-radius: 50px;">
   <h2 class="text-center pb-1">Some of the trends now:</h2>
   <div class="row row-cols-1 row-cols-md-4 g-4 px-5">
     <% @products.sample(4).each do |product|%>
