@@ -15,3 +15,11 @@
 
 // import Bootstrap
 @import "bootstrap/scss/bootstrap";
+
+.alert {
+  position: fixed !important;
+  right: 0 !important;
+  z-index: 500 !important;
+  bottom: 0 !important;
+  width: 30vw;
+}
