@@ -20,9 +20,7 @@ mahboob.save
 mahboob_product = Product.create!(
   title: "Rubab",
   description: "The perfect rubab for lease is an instrument with a warm, resonant sound and a beautiful, polished
-                finish. Its strings are responsive and easy to play, and its frets are well-spaced for comfortable
-                finger placement. The rubab should be durable and well-maintained, with no scratches or dents. Ideally,
-                it should come with a high-quality carrying case for easy transport and protection.",
+                finish.",
   price: rand(2.0..20.0).round(2),
   user: mahboob,
   address: mahboob.address
@@ -61,10 +59,7 @@ jane = User.create(
 jane_product = Product.create!(
   title: "Marimba",
   description: "Looking for a marimba for lease? Look no further than our perfect instrument! My marimba is made of
-                high-quality rosewood, with a beautiful warm and resonant tone. It has a full 5-octave range and a
-                sturdy frame with durable wheels for easy transport. Renting my marimba comes with a custom fitted
-                cover to protect the instrument. It's the perfect choice for both beginner and advanced percussionists.
-                Contact me today to reserve your marimba!",
+                high-quality rosewood, with a beautiful warm and resonant tone.",
   price: rand(2.0..20.0).round(2),
   user: jane,
   address: jane.address
@@ -103,9 +98,7 @@ roger.save
 roger_product = Product.create!(
   title: "Charango",
   description: "Looking for a high-quality charango for your next recording or performance? Look no further! My charango
-  features traditional construction and materials, including a carved wooden body and nylon strings, producing a clear
-  and vibrant sound. With its compact size and lightweight design, this charango is perfect for travel and easy to play,
-  making it an excellent choice for musicians of all levels. Contact me today to book it!",
+  features traditional construction and materials, including a carved wooden body and nylon strings.",
   price: rand(2.0..20.0).round(2),
   user: roger,
   address: roger.address
@@ -224,5 +217,5 @@ instrument_images =
     photo: instrument_image
   )
   new_instrument.save
-  p new_instrument
+  p new_instrument.title
 end
