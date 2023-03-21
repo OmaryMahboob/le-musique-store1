@@ -172,6 +172,6 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
     user: actual_user,
     address: actual_user.address
   )
-  new_instrument save
+  new_instrument.save
   p new_instrument
 end
