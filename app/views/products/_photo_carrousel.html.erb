@@ -26,5 +26,6 @@
     <%= cl_image_tag photo.key, class: "d-block w-100" %>
   <% end %>
 <% else %>
-  <%= cl_image_tag("no-image_m7jnrj", class: "d-block w-100") %>
+  <%# <%= cl_image_tag("no-image_m7jnrj", class: "d-block w-100") %>
+  <img src="<%= @product.photo %>" alt="" class="d-block w-100"  >
 <% end %>

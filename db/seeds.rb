@@ -159,9 +159,59 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
                "sitar", "kazoo", "bongos", "glockenspiel", "chimes", "vibraphone", "pan flute", "baglama", "oud",
                "djembe", "thumb piano", "pandeiro", "tambourine"]
 
+instrument_images =
+["https://m.media-amazon.com/images/I/51N2zTP-LqL._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/91CS0eGcsXL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71p3Ts9D6JL._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/81oRpoLLvYL._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/61cbqPP8P-L._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/71zGEA8lL4L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/61KqTV+V7IL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71V9djmrrNL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/61pNQNpgC1L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/61quGhuk1tL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/710O-XQN7ZL._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/81Xb++aTnPL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81f5B2cnJkL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/61NqSqEIgTL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81Ihfs5LTCL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71z3WEWEMLL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71Yx4zg7o+L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/711+cXsrKTL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/815mHicG39L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81gr9+IPivL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/61e6GcvDk9L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/61cyIX8JSwL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/717qmGlA7ZL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81Xb++aTnPL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71us2RZxgnL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/51vYRaJxxmL._AC_.jpg",
+"https://m.media-amazon.com/images/I/71ZOQVzDjEL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71gV69XL34L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81Ihfs5LTCL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/819WldTQU8S._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/614THlKS2RL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/51WLd4L7nxL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/51uzv21J8XL._AC_.jpg",
+"https://m.media-amazon.com/images/I/41MQV30G26L._AC_.jpg",
+"https://m.media-amazon.com/images/I/71PdY8+X-AL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/51qoe5x-IlL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81qddT9HsnL._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/81x18tRmGlL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/41jbJJZ56BL._AC_.jpg",
+"https://m.media-amazon.com/images/I/51KdNjiqy8L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81hpF2tyj5L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71Ust+3JFVL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71CQjIaXEQL._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/81E-oqRzzwL._AC_SY879_.jpg",
+"https://m.media-amazon.com/images/I/61R6K+TVJ1L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71ehq28SC8L._AC_SX679_.jpg",
+"https://m.media-amazon.com/images/I/71KnfDnTvQL._AC_SX679_.jpg"]
+
 39.times do
   actual_user = User.order("RANDOM()").first
-  instrument = instruments.sample
+  instrument = instruments.shift
+  instrument_image = instrument_images.shift
 
   new_instrument = Product.create!(
     title: instrument.capitalize,
@@ -170,7 +220,8 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
                   experienced player, this #{instrument} is perfect for your level.",
     price: rand(2.0..20.0).round(2),
     user: actual_user,
-    address: actual_user.address
+    address: actual_user.address,
+    photo: instrument_image
   )
   new_instrument.save
   p new_instrument

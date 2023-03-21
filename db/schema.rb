@@ -77,17 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_113127) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "order_id", null: false
-    t.text "content"
-    t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_reviews_on_order_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -110,6 +99,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_113127) do
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
-  add_foreign_key "reviews", "orders"
-  add_foreign_key "reviews", "users"
 end
