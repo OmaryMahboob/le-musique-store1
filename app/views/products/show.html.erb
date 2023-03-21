@@ -3,41 +3,58 @@
     You must login to view all the customer information.
   </div>
 <% end %>
-<h1 class="text-center"><%= @product.title %></h1>
-<div class="container card-group">
-  <div class="d-flex row">
-    <div class=" product-photo w-75">
-      <%= render 'products/photo_carrousel' %>
+
+<h1 class="text-center py-3">
+  <% article = ["a", "e", "i", "o", "u"].include?(@product.title[0].downcase) ? "an" : "a" %>
+  Are you looking for <%= article %> <%= @product.title %>?
+</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <%= render 'products/photo_carrousel', class:"p-2" %>
     </div>
-    <div class=" card w-25">
-      <div class=" card row">
-        <p><strong>Description:</strong> <%= @product.description %></p>
-        <p><strong>Price:</strong> <%= @product.price %> €</p>
-        <% if user_signed_in? %>
-          <p><strong>Email: </strong><%= @product.user.email %></p>
-          <p><strong>Address: </strong><%= @product.address %></p>
-        <% end %>
-      </div>
-      <div class=" card row align-item-center">
-        <% if @product.user != current_user %>
-            <%= render "orders/form", order: @order%>
-          <% else %>
-            <%= link_to "Update this product information", edit_product_path(@product), class: "btn btn-light hover-shadow"  %>
-            <%= button_to "Remove this product", @product, method: :delete, class: "btn btn-primary hover-shadow"%>
+    <div class="col-md-3">
+      <div class="card">
+        <h4 class="text-center card-header">Details</h4>
+        <div class="card-body">
+          <p><strong>Description:</strong> <br> <%= @product.description %></p>
+          <p><strong>Price per day:</strong> <br> <%= @product.price %> €</p>
+          <% if user_signed_in? %>
+            <p><strong>Email: </strong> <br> <%= @product.user.email %></p>
+            <p><strong>Address: </strong> <br> <%= @product.address %></p>
           <% end %>
+          <% if @product.user == current_user %>
+            <div class="d-grid gap-2 col-9 align-items-center text-center">
+              <%= link_to "Update this product", edit_product_path(@product), class: "btn btn-outline-info" %>
+              <%= link_to "Remove this product", product_path(@product), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete it?" }, class: "btn btn-outline-danger" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <% if user_signed_in? %>
-        <% unless @product.user == current_user %>
-          <div id="map" style="width: 70%; height: 400px;"
-          data-controller="map"
-          data-map-markers-value="<%= [@marker].to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <% if user_signed_in? %>
+      <% unless @product.user == current_user %>
+        <div class="col-md-9 pt-4">
+          <div id="map" style="height: 413px;"
+            data-controller="map"
+            data-map-markers-value="<%= [@marker].to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
-        <% end %>
+        </div>
+        <div class="col-md-3 pt-4">
+          <div class="card">
+          <h4 class="text-center card-header">Book this instrument</h4>
+            <div class="card-body">
+              <%= render "orders/form", order: @order%>
+            </div>
+          </div>
+        </div>
       <% end %>
+    <% end %>
+  </div>
 </div>
+
 <div class="container">
   <%= link_to "Back to products", products_path, class: "btn btn-primary mt-3" %>
 </div>

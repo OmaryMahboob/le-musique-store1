@@ -19,8 +19,11 @@ mahboob.save
 
 mahboob_product = Product.create!(
   title: "Rubab",
-  description: "Afghanistan's national instrument, good sound",
-  price: rand(20..100),
+  description: "The perfect rubab for lease is an instrument with a warm, resonant sound and a beautiful, polished
+                finish. Its strings are responsive and easy to play, and its frets are well-spaced for comfortable
+                finger placement. The rubab should be durable and well-maintained, with no scratches or dents. Ideally,
+                it should come with a high-quality carrying case for easy transport and protection.",
+  price: rand(2.0..20.0).round(2),
   user: mahboob,
   address: mahboob.address
 )
@@ -30,16 +33,21 @@ mahboob_product.photos.attach(
   filename: "photo_rubab1.jpeg",
   content_type: "image/jpg"
 )
+mahboob.save
+
 mahboob_product.photos.attach(
   io: URI.open("https://i.guim.co.uk/img/media/bdc6551c0615762ef8e523dedfbe72a0daacc722/0_197_1791_1075/master/1791.jpg?width=1200&quality=85&auto=format&fit=max&s=1f7e5f7a7df79bf5936284cc52d2da18"),
   filename: "photo_rubab2.jpeg",
   content_type: "image/jpg"
 )
+mahboob.save
+
 mahboob_product.photos.attach(
   io: URI.open("https://i.ytimg.com/vi/RCabnDJ8Tgc/maxresdefault.jpg"),
   filename: "photo_rubab3.jpeg",
   content_type: "image/jpg"
 )
+mahboob.save
 
 jane = User.create(
   first_name: "Jane",
@@ -49,6 +57,25 @@ jane = User.create(
   email: "martins@test.com",
   password: "123456"
 )
+
+jane_product = Product.create!(
+  title: "Marimba",
+  description: "Looking for a marimba for lease? Look no further than our perfect instrument! My marimba is made of
+                high-quality rosewood, with a beautiful warm and resonant tone. It has a full 5-octave range and a
+                sturdy frame with durable wheels for easy transport. Renting my marimba comes with a custom fitted
+                cover to protect the instrument. It's the perfect choice for both beginner and advanced percussionists.
+                Contact me today to reserve your marimba!",
+  price: rand(2.0..20.0).round(2),
+  user: jane,
+  address: jane.address
+)
+
+jane_product.photos.attach(
+  io: URI.open("https://www.musicalortiz.com/wp-content/uploads/2021/11/Marimba.jpg"),
+  filename: "photo_marimba.jpeg",
+  content_type: "image/jpg"
+)
+jane.save
 
 jane.profile_picture.attach(
   io: URI.open("https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1667074864/tkaswximthoisj8cucbd.jpg"),
@@ -75,9 +102,11 @@ roger.save
 
 roger_product = Product.create!(
   title: "Charango",
-  description: "Excellent condition charango, crafted from high-quality wood with warm, authentic tones.
-                Perfect for all levels of musicians. Don't miss out on this beautiful, traditional Andean instrument.",
-  price: rand(20..100),
+  description: "Looking for a high-quality charango for your next recording or performance? Look no further! My charango
+  features traditional construction and materials, including a carved wooden body and nylon strings, producing a clear
+  and vibrant sound. With its compact size and lightweight design, this charango is perfect for travel and easy to play,
+  making it an excellent choice for musicians of all levels. Contact me today to book it!",
+  price: rand(2.0..20.0).round(2),
   user: roger,
   address: roger.address
 )
@@ -86,6 +115,7 @@ roger_product.photos.attach(
   filename: "photo_charango1.jpeg",
   content_type: "image/jpg"
 )
+roger.save
 
 first_names = ["Avery", "Blake", "Cameron", "Charlie", "Dakota", "Drew", "Eliot", "Emerson", "Frankie", "Harley",
                "Hayden", "Hunter", "Jamie", "Jesse", "Jordan", "Jules", "Kai", "Kelly", "Kendall", "Lee", "Logan",
@@ -119,6 +149,7 @@ sample_address = ["Friedrichstraße", "Potsdamer Platz", "Unter den Linden", "Ku
     content_type: "image/jpg"
   )
   new_user.save
+  p new_user.first_name
 end
 
 instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "cello", "flute", "bass guitar", "ukulele",
@@ -132,13 +163,15 @@ instruments = ["guitar", "piano", "violin", "trumpet", "saxophone", "drums", "ce
   actual_user = User.order("RANDOM()").first
   instrument = instruments.sample
 
-  Product.create!(
+  new_instrument = Product.create!(
     title: instrument.capitalize,
     description: "Lease a high-quality #{instrument} today and start playing your favorite tunes! This #{instrument}
                   is super professional and I keep it ready for your use. Whether you're a beginner or an
                   experienced player, this #{instrument} is perfect for your level.",
-    price: rand(20..80),
+    price: rand(2.0..20.0).round(2),
     user: actual_user,
     address: actual_user.address
   )
+  new_instrument save
+  p new_instrument
 end

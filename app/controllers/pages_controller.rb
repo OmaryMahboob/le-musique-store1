@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home]
 
   def home
-    @new_products = Product.first(3)
+    @products = Product.all
   end
 
   def dashboard
